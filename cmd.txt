@@ -1,23 +1,19 @@
+# Build - auto increments build number
+make vr-build
+
+# Run - auto increments build number
+make vr-run
+
+# Test - auto increments build number
+make vr-test
+
 # Show current version
-make version
+make vr-version
 
-# Sync version across all files
-make sync-version
+# Increment version (resets build number to 1)
+make vr-major
+make vr-minor
+make vr-patch
 
-# Increment patch version
-make increment-version PART=patch
-
-# Increment build number only
-make increment-version PART=build
-
-# Validate version consistency
-make validate-version
-
-# Build with version validation
-make build
-
-# Debug information
-make debug
-
-# Production build with auto-increment
-make production
+# Show info
+make vr-info

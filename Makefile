@@ -1,90 +1,41 @@
 VERSION_FILE := version.json
-PACKAGE_FILE := package.json
-SCRIPTS_DIR := scripts
 
-ifeq ($(shell test -f $(VERSION_FILE) && echo exists),exists)
-APP_VERSION := $(shell jq -r '.app.version // "unknown"' $(VERSION_FILE))
-BUILD_NUMBER := $(shell jq -r '.app.buildNumber // "unknown"' $(VERSION_FILE))
-BUILD_ID := $(shell jq -r '.app.buildId // "unknown"' $(VERSION_FILE))
-SEMANTIC_VERSION := $(shell jq -r '.app.semanticVersion // "unknown"' $(VERSION_FILE))
-else
-APP_VERSION := unknown
-BUILD_NUMBER := unknown
-BUILD_ID := unknown
-SEMANTIC_VERSION := unknown
-endif
+APP_VERSION := $(shell jq -r '.app.version' $(VERSION_FILE))
+BUILD_NUMBER := $(shell jq -r '.app.buildNumber' $(VERSION_FILE))
+BUILD_ID := $(shell jq -r '.app.buildId' $(VERSION_FILE))
 
-.PHONY: help version sync-version increment-version validate-version build test clean debug
+.PHONY: vr-build vr-run vr-test version vr-major vr-minor vr-patch
 
-help:
-	@echo "Available targets:"
-	@echo "  version         - Show current version information"
-	@echo "  sync-version    - Synchronize version across all files"
-	@echo "  increment-version - Increment version (use: make increment-version PART=patch)"
-	@echo "  validate-version - Validate version consistency"
-	@echo "  build           - Build the project with version sync"
-	@echo "  test            - Run tests with version validation"
-	@echo "  debug           - Show debug information"
-	@echo "  clean           - Clean temporary files"
-
-version:
-	@bash $(SCRIPTS_DIR)/increment-version.sh show
-
-sync-version:
-	@echo "Synchronizing version information..."
-	@bash $(SCRIPTS_DIR)/sync-version.sh
-
-increment-version:
-ifndef PART
-	@echo "Error: PART parameter required (major, minor, patch, build)"
-	@exit 1
-endif
-	@bash $(SCRIPTS_DIR)/increment-version.sh $(PART)
-	@bash $(SCRIPTS_DIR)/sync-version.sh
-
-validate-version:
-	@echo "Validating version consistency..."
-	@bash $(SCRIPTS_DIR)/validate-version.sh
-
-build: validate-version sync-version
+vr-build:
+	@echo "Auto-updating version..."
+	@bash scripts/smart-version.sh
 	@echo "Building $(APP_VERSION) [Build: $(BUILD_NUMBER)]"
-	@echo "Build ID: $(BUILD_ID)"
-	@tsc --project tsconfig.json
-	@echo "Build completed: $(SEMANTIC_VERSION)"
+	@tsc
+	@echo "Build complete: $(BUILD_ID)"
 
-test: validate-version
-	@echo "Running tests for $(APP_VERSION)"
-	@npm test
-
-run: build
-	@echo "Starting application $(SEMANTIC_VERSION)"
+vr-run:
+	@bash scripts/smart-version.sh
+	@echo "Running $(APP_VERSION)"
 	@node dist/index.js
 
-debug:
-	@echo "=== Debug Information ==="
-	@echo "App Version: $(APP_VERSION)"
-	@echo "Build Number: $(BUILD_NUMBER)"
-	@echo "Build ID: $(BUILD_ID)"
-	@echo "Semantic Version: $(SEMANTIC_VERSION)"
-	@echo "Package Version: $(shell jq -r '.version // "unknown"' $(PACKAGE_FILE))"
-	@echo "Node Version: $(shell node --version)"
-	@echo "NPM Version: $(shell npm --version)"
+vr-test:
+	@bash scripts/smart-version.sh
+	@echo "Testing $(APP_VERSION)"
+	@npm vr-test
 
-clean:
-	@rm -f .version.lock
-	@rm -f $(PACKAGE_FILE).bak.*
-	@find . -name "*.bak.*" -delete
-	@echo "Cleaned version management artifacts"
+vr-version:
+	@bash scripts/smart-version.sh show
 
-install-hooks:
-	@echo "Installing version validation git hook..."
-	@cp scripts/validate-version.sh .git/hooks/pre-commit
-	@chmod +x .git/hooks/pre-commit
-	@echo "Git hook installed"
+vr-major:
+	@bash scripts/smart-version.sh major
 
-production: validate-version
-	@bash $(SCRIPTS_DIR)/increment-version.sh build
-	@VERSION_DEBUG=true bash $(SCRIPTS_DIR)/sync-version.sh
-	@make build
+vr-minor:
+	@bash scripts/smart-version.sh minor
 
-.DEFAULT_GOAL := help
+vr-patch:
+	@bash scripts/smart-version.sh patch
+
+vr-info:
+	@echo "Project: $(APP_VERSION)"
+	@echo "Build: $(BUILD_NUMBER)"
+	@echo "ID: $(BUILD_ID)"
