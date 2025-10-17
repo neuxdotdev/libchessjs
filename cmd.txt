@@ -1,0 +1,23 @@
+# Show current version
+make version
+
+# Sync version across all files
+make sync-version
+
+# Increment patch version
+make increment-version PART=patch
+
+# Increment build number only
+make increment-version PART=build
+
+# Validate version consistency
+make validate-version
+
+# Build with version validation
+make build
+
+# Debug information
+make debug
+
+# Production build with auto-increment
+make production

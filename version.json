@@ -1,0 +1,26 @@
+{
+  "app": {
+    "version": "1.0.1",
+    "buildDate": "2024-01-15T10:30:00Z",
+    "buildNumber": "42",
+    "buildId": "build-42-20240115",
+    "semanticVersion": "1.0.1+42.20240115"
+  },
+  "metadata": {
+    "lastUpdated": "2024-01-15T10:30:00Z",
+    "updatedBy": "build-system",
+    "environment": "development"
+  },
+  "": {
+    "app": {
+      "version": "1.0.2",
+      "buildNumber": "43",
+      "buildDate": "2025-10-17T17:42:23Z",
+      "buildId": "build-1.0.1-42-20251017174241",
+      "semanticVersion": "1.0.1+42.20251017"
+    },
+    "metadata": {
+      "lastUpdated": "2025-10-17T17:42:41Z"
+    }
+  }
+}
