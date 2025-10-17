@@ -1,0 +1,68 @@
+CONFIG_FILE="./.chapsnaprc"
+SNAPSHOT_DIR="./.snapshoot"
+OUTPUT_FORMAT="md"
+
+# Logging verbosity
+VERBOSE=true
+DEBUG=true           # ⬅️ aktifkan untuk cetak semua step + waktu
+LOG_LEVEL="debug"    # [debug|info|warn|error]
+
+# Format & system
+TIMESTAMP_FORMAT="%Y-%m-%d_%H-%M-%S"
+MAX_FILE_SIZE=10485760
+FOLLOW_SYMLINKS=false
+PRESERVE_PATH=true
+ENCODING="utf-8"
+
+# Include everything relevant to TypeScript projects
+INCLUDE_PATTERNS=(
+    "**/*.ts"
+    "**/*.tsx"
+    "**/*.d.ts"
+    "**/*.js"
+    "**/*.json"
+    "**/*.mjs"
+)
+
+# Ignore useless or generated stuff
+EXCLUDE_PATTERNS=(
+    ".git/*"
+    ".github/*"
+    ".vscode/*"
+    ".idea/*"
+    ".snapshoot/*"
+    "node_modules/*"
+    "__pycache__/*"
+    "coverage/*"
+    "dist/*"
+    "build/*"
+    "tmp/*"
+    "logs/*"
+    "*.log"
+    "*.tmp"
+    "*.cache"
+    "*.min.js"
+    "*.min.css"
+    "*.map"
+    "*.lock"
+    "*.bak"
+    "*.swp"
+    "*.zip"
+    "*.tar"
+    "*.gz"
+    "*.rar"
+    "*.7z"
+)
+
+# Experimental: custom log colors (optional)
+LOG_COLOR_INFO="\033[0;36m"
+LOG_COLOR_SUCCESS="\033[0;32m"
+LOG_COLOR_WARN="\033[0;33m"
+LOG_COLOR_ERROR="\033[0;31m"
+LOG_COLOR_RESET="\033[0m"
+
+# Header banner toggle
+PRINT_BANNER=true
+
+# Optional footer summary
+PRINT_SUMMARY=true

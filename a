@@ -1,0 +1,30 @@
+[0;32m[2025-10-18 01:08:26] INFO:[0m Loading configuration from: ./.chapsnaprc
+[0;32m[2025-10-18 01:08:26] SUCCESS:[0m Configuration loaded successfully
+[0;32m[2025-10-18 01:08:26] SUCCESS:[0m Environment initialized successfully
+[0;32m[2025-10-18 01:08:26] INFO:[0m ChapSnap Maker started at: Sat Oct 18 01:08:26 AM WIB 2025
+[0;32m[2025-10-18 01:08:26] INFO:[0m Working directory: /home/leopard/gh/libchessjs
+[0;32m[2025-10-18 01:08:26] INFO:[0m Target directory: /home/leopard/gh/libchessjs/src
+[0;32m[2025-10-18 01:08:26] INFO:[0m Output file: ./.snapshoot/snapshot_2025-10-18_01-08-26.md
+[0;32m[2025-10-18 01:08:26] INFO:[0m Configuration:
+[0;32m[2025-10-18 01:08:26] INFO:[0m   Format: md
+[0;32m[2025-10-18 01:08:26] INFO:[0m   Max file size: 10485760 bytes
+[0;32m[2025-10-18 01:08:26] INFO:[0m   Follow symlinks: false
+[0;32m[2025-10-18 01:08:26] INFO:[0m   Preserve paths: true
+[0;32m[2025-10-18 01:08:26] INFO:[0m   Encoding: utf-8
+[0;32m[2025-10-18 01:08:26] INFO:[0m   Include patterns: **/*.ts **/*.tsx **/*.d.ts **/*.js **/*.json **/*.mjs
+[0;32m[2025-10-18 01:08:26] INFO:[0m   Exclude patterns: .git/* .github/* .vscode/* .idea/* .snapshoot/* node_modules/* __pycache__/* coverage/* dist/* build/* tmp/* logs/* *.log *.tmp *.cache *.min.js *.min.css *.map *.lock *.bak *.swp *.zip *.tar *.gz *.rar *.7z
+[0;32m[2025-10-18 01:08:26] INFO:[0m Starting snapshot creation...
+[0;32m[2025-10-18 01:08:26] INFO:[0m Target: /home/leopard/gh/libchessjs/src
+[0;32m[2025-10-18 01:08:26] INFO:[0m Output: ./.snapshoot/snapshot_2025-10-18_01-08-26.md
+[0;32m[2025-10-18 01:08:26] INFO:[0m Format: md
+[0;32m[2025-10-18 01:08:26] SUCCESS:[0m Snapshot completed: 0 files processed, 0 files skipped
+
+==========================================
+🐚 CHAPSNAP MAKER - SNAPSHOT COMPLETE
+==========================================
+📁 Target: /home/leopard/gh/libchessjs/src
+💾 Output: ./.snapshoot/snapshot_2025-10-18_01-08-26.md
+📊 Size: 
+📄 Files processed: 0
+🕒 Timestamp: Sat Oct 18 01:08:26 AM WIB 2025
+==========================================
